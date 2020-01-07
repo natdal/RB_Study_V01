@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dddb6fa1765bff145b48399e3790e035, type: 3}
+  m_Name: Death_FallingBack
+  m_EditorClassIdentifier: 
+  generalBodyParts: 0000000002000000
+  animator: {fileID: 9100000, guid: 34de9e4f349a12d439a13b543ea03f96, type: 2}
+  deathType: 0
+  isFacingAttacker: 1
