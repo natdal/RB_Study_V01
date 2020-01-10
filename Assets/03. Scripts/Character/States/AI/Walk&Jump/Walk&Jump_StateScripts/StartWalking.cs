@@ -66,6 +66,24 @@ namespace ver_01
                         animator.gameObject.SetActive(false);
                         animator.gameObject.SetActive(true);
                     }
+                    else // temporary attack solution
+                    {
+                        if (CharacterManager.Instance.GetPlayableCharacter().damageDetector.damageTaken == 0)
+                        {
+                            if (control.IsFacingForward())
+                            {
+                                control.moveRight = true;
+                                control.moveLeft = false;
+                                control.attack = true;
+                            }
+                            else
+                            {
+                                control.moveRight = false;
+                                control.moveLeft = true;
+                                control.attack = true;
+                            }
+                        }
+                    }
                 }
             }
         }

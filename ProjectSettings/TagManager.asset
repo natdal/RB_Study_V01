@@ -17,12 +17,12 @@ TagManager:
   - Layer_Character
   - Layer_Bot
   - Layer_Ground
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Layer_DeadBody
+  - PostProcessing
+  - CHARACTER
+  - BOT
+  - GROUND
+  - DEADBODY
   - 
   - 
   - 

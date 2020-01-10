@@ -52,6 +52,8 @@ namespace ver_01
             }
 
             GameObject obj = PoolManager.Instance.GetObject(objectType);
+
+            Debug.Log("spawning " + objectType.ToString() + " | looking for: " + parentObjName);
             if (!string.IsNullOrEmpty(parentObjName))
             {
                 GameObject parent = control.GetChildObj(parentObjName);

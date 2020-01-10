@@ -26,7 +26,7 @@ namespace ver_01
             }
 
             control.aiProgress.pathFindingAgent.GetComponent<NavMeshAgent>().enabled = false;
-            control.aiProgress.pathFindingAgent.transform.position = control.transform.position;
+            control.aiProgress.pathFindingAgent.transform.position = control.transform.position + (Vector3.up * 0.25f);
             control.aiProgress.pathFindingAgent.GoToTarget();
         }
 

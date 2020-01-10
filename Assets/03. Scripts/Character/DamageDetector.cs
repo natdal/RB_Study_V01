@@ -88,11 +88,19 @@ namespace ver_01
             {
                 foreach (Collider collider in trigger.collidingParts)
                 {
-                    foreach (string name in info.colliderNames)
+                    foreach (ATTACK_PART_TYPE part in info.attackParts)
                     {
-                        if (name.Equals(collider.gameObject.name))
+                        if (part == ATTACK_PART_TYPE.LEFT_HAND)
                         {
-                            if (collider.transform.root.gameObject == info.attacker.gameObject) // 동일한 적이 있을 때 같은 부위를 맞아도 따로 적용되도록 하는거
+                            if (collider.gameObject == info.attacker.leftHand_Attack)
+                            {
+                                damagedPart = trigger.generalBodyPart; // 어디 맞았어?
+                                return true;
+                            }
+                        }
+                        else if (part == ATTACK_PART_TYPE.RIGHT_HAND)
+                        {
+                            if (collider.gameObject == info.attacker.rightHand_Attack)
                             {
                                 damagedPart = trigger.generalBodyPart; // 어디 맞았어?
                                 return true;

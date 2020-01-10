@@ -26,12 +26,9 @@ namespace ver_01
 
     public class CharacterControl : MonoBehaviour
     {
-        public PLAYERBLE_CHARACTER_TYPE playerbleCharacterType;
-
-        public Animator skinnedMeshAnimator;
-        public Material material;
-
+        
         // Input Manager로 조작하기 위해서 따로 만들어줌.
+        [Header("Input")]
         public bool turbo;
         public bool moveUp;
         public bool moveDown;
@@ -39,18 +36,28 @@ namespace ver_01
         public bool moveLeft;
         public bool jump;
         public bool attack;
+
+        [Header("SubComponents")]
         public LedgeChecker ledgeChecker;
         public AnimationProgress animationProgress;
         public AIProgress aiProgress;
-
-        public GameObject colliderEdgePrefab;
+        public DamageDetector damageDetector;
+        //public GameObject colliderEdgePrefab;
         public List<GameObject> bottomSpheres = new List<GameObject>();
         public List<GameObject> frontSpheres = new List<GameObject>();
-        public List<Collider> ragdollParts = new List<Collider>();
 
         // 중력계산
+        [Header("Gravity")]
         public float gravityMultiplier;
         public float pullMultiplier;
+
+        [Header("Setup")]
+        public PLAYERBLE_CHARACTER_TYPE playerbleCharacterType;
+        public Animator skinnedMeshAnimator;
+        public Material material;
+        public List<Collider> ragdollParts = new List<Collider>();
+        public GameObject leftHand_Attack;
+        public GameObject rightHand_Attack;
 
         private List<TriggerDetector> triggerDetectors = new List<TriggerDetector>();
         private Dictionary<string, GameObject> childObjects = new Dictionary<string, GameObject>(); // 찾은 자식 몸부분은 또 쓸거니까 담아둔다.
@@ -88,6 +95,7 @@ namespace ver_01
             ledgeChecker = GetComponentInChildren<LedgeChecker>();
             animationProgress = GetComponent<AnimationProgress>();
             aiProgress = GetComponentInChildren<AIProgress>();
+            damageDetector = GetComponentInChildren<DamageDetector>();
 
             RegisterCharacter(); // 이렇게 해야 뭔 캐릭터인줄 바로 찾지
         }
@@ -136,12 +144,15 @@ namespace ver_01
             {
                 if(c.gameObject != this.gameObject) // 이 오브젝트가 현제 게임오브젝트에 포함 안되면. 그러니까 최상위에 있는것만 남는겨
                 {
-                    c.isTrigger = true; // 이러면 통과하지롱
-                    ragdollParts.Add(c);
-
-                    if (c.GetComponent<TriggerDetector>() == null) // 트리거 디텍터가 없으면
+                    if (c.gameObject.GetComponent<LedgeChecker>() == null)
                     {
-                        c.gameObject.AddComponent<TriggerDetector>(); // 각 레그돌에 트리거디텍터를 붙여준다.
+                        c.isTrigger = true; // 이러면 통과하지롱
+                        ragdollParts.Add(c);
+
+                        if (c.GetComponent<TriggerDetector>() == null) // 트리거 디텍터가 없으면
+                        {
+                            c.gameObject.AddComponent<TriggerDetector>(); // 각 레그돌에 트리거디텍터를 붙여준다.
+                        }
                     }
                 }
             }
@@ -221,7 +232,7 @@ namespace ver_01
 
         public GameObject CreateEdgeSphere(Vector3 pos)
         {
-            GameObject obj = Instantiate(colliderEdgePrefab, pos, Quaternion.identity);
+            GameObject obj = Instantiate(Resources.Load("ColliderEdge", typeof(GameObject)), pos, Quaternion.identity) as GameObject;
             return obj;
         }
 
@@ -296,8 +307,6 @@ namespace ver_01
         }
 
 
-
-
         public void ChangeMaterial() // 인스펙터 창에서 Mat이랑 Shader 쉽게 바꾸는 방법.
         {
             if (material == null) // 메테리얼이 없을 때
@@ -315,6 +324,7 @@ namespace ver_01
                 }
             }
         }
+        
     }
 }
 

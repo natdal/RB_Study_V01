@@ -8,7 +8,8 @@ namespace ver_01
     {
         public CharacterControl attacker = null;
         public Attack attackAbility; // statedata
-        public List<string> colliderNames = new List<string>();
+        //public List<string> colliderNames = new List<string>();
+        public List<ATTACK_PART_TYPE> attackParts = new List<ATTACK_PART_TYPE>();
         //public bool launchIntoAir;
         public DEATH_TYPE deathType;
         public bool mustCollide;
@@ -32,7 +33,8 @@ namespace ver_01
             isRegisterd = true;
 
             attackAbility = attack;
-            colliderNames = attack.colliderNames;
+            //colliderNames = attack.colliderNames;
+            attackParts = attack.attackParts;
             deathType = attack.deathType;
             //launchIntoAir = attack.lanchIntoAir;
             mustCollide = attack.mustCollide;

@@ -4,13 +4,20 @@ using UnityEngine;
 
 namespace ver_01
 {
+    public enum ATTACK_PART_TYPE
+    {
+        LEFT_HAND,
+        RIGHT_HAND,
+    }
+
     [CreateAssetMenu(fileName = "New State", menuName = "ver_01/AbilityData/Attack")]
     public class Attack : StateData
     {
         public bool debug;
         public float startAttackTime;
         public float endAttackTime;
-        public List<string> colliderNames = new List<string>(); // 타격을 줄 객체 이름.
+        //public List<string> colliderNames = new List<string>(); // 타격을 줄 객체 이름.
+        public List<ATTACK_PART_TYPE> attackParts = new List<ATTACK_PART_TYPE>();
         public DEATH_TYPE deathType;
         //public bool lanchIntoAir;
         public bool mustCollide;

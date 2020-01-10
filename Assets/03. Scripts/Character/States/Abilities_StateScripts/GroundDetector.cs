@@ -54,7 +54,10 @@ namespace ver_01
                     RaycastHit hit;
                     if (Physics.Raycast(o.transform.position, -Vector3.up, out hit, distance)) // 아래로 쏴. 근데 뭐가 맞았네?
                     {
-                        if (!control.ragdollParts.Contains(hit.collider) && !Ledge.IsLedge(hit.collider.gameObject) && !Ledge.IsLedgeChecker(hit.collider.gameObject)) // 플레이어의 레그돌파츠에 ray가 안부딪히면 아직 살아있다는 이야기다.
+                        if (!control.ragdollParts.Contains(hit.collider) 
+                            && !Ledge.IsLedge(hit.collider.gameObject) 
+                            && !Ledge.IsLedgeChecker(hit.collider.gameObject)
+                            && !Ledge.IsCharacter(hit.collider.gameObject)) // 플레이어의 레그돌파츠에 ray가 안부딪히면 아직 살아있다는 이야기다.
                         {
                             return true; // 땅에 도착했네!
                         }
