@@ -66,7 +66,8 @@ namespace ver_01
                         animator.gameObject.SetActive(false);
                         animator.gameObject.SetActive(true);
                     }
-                    else // temporary attack solution
+                    // temporary attack solution
+                    /*else
                     {
                         if (CharacterManager.Instance.GetPlayableCharacter().damageDetector.damageTaken == 0)
                         {
@@ -84,6 +85,7 @@ namespace ver_01
                             }
                         }
                     }
+                    */
                 }
             }
         }
